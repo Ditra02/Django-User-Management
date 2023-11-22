@@ -2,4 +2,34 @@ https://youtu.be/WuyKxdLcw3w
 
 add crispy in installed apps settings (8:00)
 
-11.34
+remote posgress database setup (21:56)
+    kita bisa setup database secara local dan tanpa ngehostingnya secara remote. tapi di video ini bakal ditunjukin
+    cara host nya pake heroku (gratis). ngehost di heroku memungkinkan kita mengkoneksikan RETOOL dengan database.
+    kita bakal bisa make dan memodif databasenya tanpa make django.
+
+Gantinya Heroku
+    https://youtu.be/HEV1PWycOuQ?si=hDxEqxUDN4qLA88z
+    https://dev.to/dennisivy11/easiest-django-postgres-connection-ever-with-railway-11h6
+
+    setup railway di settings.py 
+
+    DATABASES = {
+    'default': {        
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',                               # PGDATABASE
+        'USER': 'postgres',                              # PGUSER
+        'PASSWORD': '*3a1agGbCEb-GFFAEeFbb3Gg*beAA1Cg',  # PGPASSWORD
+        'HOST': 'monorail.proxy.rlwy.net',               # PGHOST
+        'PORT': '50346',                                 # PGPORT
+    }
+}
+
+RETOOL(28:00)
+
+handle database connections from RAILWAY TO RETOOL(30.14)
+
+Writing sql queries to show data(30:45)
+    select * from pg_catalog.pg_tables # show all tables inside our database
+
+Creating django auth | User regis and signin(33:12)
+    
