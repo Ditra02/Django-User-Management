@@ -32,4 +32,64 @@ Writing sql queries to show data(30:45)
     select * from pg_catalog.pg_tables # show all tables inside our database
 
 Creating django auth | User regis and signin(33:12)
+    include('', include('django.contrib.auth.urls')), in urls.py
+
+
+    prebuit urls things such as login, logout etc like below. all we need to allow that one line code
+    works is to create html template for them
+
+        '''
+    The URLs provided by django.contrib.auth.urls are
+
+    [what ever]/login/ [name='login']
+    [what ever]/logout/ [name='logout']
+
+    [what ever]/password_reset/ [name='password_reset']
+    [what ever]/password_reset/done/ [name='password_reset_done']
+
+    [what ever]/password_change/ [name='password_change']
+    [what ever]/password_change/done/ [name='password_change_done']
+
+    [what ever]/reset/<uidb64>/<token>/ [name='password_reset_confirm']
+    [what ever]/reset/done/ [name='password_reset_complete']
+    '''
+
+    For example 
+    Login route yang di sediain sama django bakal ngerender template login lewat urlnya
     
+    Jadi, intinya 1 line code itu bakal ngerender spesifik html template yang bakal di arahin
+    sama spesifik urlnya (url ini udh punya parameter 'name' kita tinggal panggil kek diatas)
+
+
+    Menggunakan prebuiltin login url dengan template login(34:43)
+
+        apa yang sebenarnya kita pengen dari login form adalah kita ingin menampilkan
+        sebuah form yang udh disediain ama django. inililah alasan kita menggunakan 
+        'crispy form'.
+
+        lambang pipe atau '|' melambangkan django filter. dengan adanya ini brati ngaktifin 
+        filter ini 
+
+    
+    ERROR terkait cispy form (40.03)
+        tambain ini di settings.py
+
+        CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+        CRISPY_TEMPLATE_PACKS = "bootstrap5"
+
+    menambahkan login redirect di settings.py(41:31)
+        ini bakal set kalo kita udah berhasil login mau diarahin ke mana 
+
+    membuat register form (42:40)
+
+    extend usercreationform dari django di forms.py (45.30)
+
+    making request or query in retool to show the user that registered in the website (52:11)
+
+    how we view the user information that signed in (55:50)
+
+    dealing with user permission and allowing spesific users to create post (58:33)
+
+
+
