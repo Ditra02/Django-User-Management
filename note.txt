@@ -92,4 +92,6 @@ Creating django auth | User regis and signin(33:12)
     dealing with user permission and allowing spesific users to create post (58:33)
 
 
+Creating Post (1:01:18)
 
+viewing post and we can delete a post if we create it (1:13:22)
