@@ -6,6 +6,3 @@ __pycache__/
 
 # default database
 db.sqlite3
-
-# confidental information
-.env

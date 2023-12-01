@@ -16,7 +16,6 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / 'secret/.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -91,8 +90,8 @@ DATABASES = {
         
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
-        'USER': str(os.getenv('DATABASES_HOST_USER')),
-        'PASSWORD': str(os.getenv('DATABASES_HOST_PASSWORD')),
+        'USER': 'postgres',
+        'PASSWORD': '*3a1agGbCEb-GFFAEeFbb3Gg*beAA1Cg',
         'HOST': 'monorail.proxy.rlwy.net',
         'PORT': '50346',
     }
