@@ -16,12 +16,14 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / 'secret/.env')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(cv(c7g^-c__4#wwjmik+sdabw-h(yd%$b9&ad2^xyd$*yvy##'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,8 +92,8 @@ DATABASES = {
         
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': '*3a1agGbCEb-GFFAEeFbb3Gg*beAA1Cg',
+        'USER': str(os.getenv('DATABASES_HOST_USER')),
+        'PASSWORD': str(os.getenv('DATABASES_HOST_PASSWORD')),
         'HOST': 'monorail.proxy.rlwy.net',
         'PORT': '50346',
     }
