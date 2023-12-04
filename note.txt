@@ -105,3 +105,18 @@ viewing post and we can delete a post if we create it (1:13:22)
 
         we want to show that button to the people that have the ability to delete a post
         and to people that could ban a user (1:17:40)
+
+Group and User Permission (1:25:56)
+    assigning user to different group and looking at specific permissions and handle page access permissions.
+
+    kita akan membuat grup baru. grup ini akan menjadi mod grup. dan akan dibuat 
+    juga default grup. 
+    
+    default grup ini punya kemampuan untuk membuat post dan menghapus post nya sendiri.
+    kalo default user ini di banned. user ini ga bakal bisa ngepost lagi 
+
+    mod grup bakal punya  kemampuan untuk menghapus semua post, tapi ga bisa banned akun user 
+
+    admin grup bisa ban user dan bisa hapus semua post
+
+    
