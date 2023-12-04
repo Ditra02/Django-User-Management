@@ -2,11 +2,22 @@ from django.shortcuts import render, HttpResponse, redirect
 from .forms import RegisterForm, PostForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+from .models import Post
 
 @login_required(login_url="/login")
 def home(request):
-    return render(request=request, template_name='main/home.html')
+    posts = Post.objects.all()
+    
+    if request.method == "POST":
+        post_id = request.POST.get("post-id")
+        post = Post.objects.filter(id=post_id).first()
+        
+        if post and post.author == request.user:
+            post.delete()
+    
+    context = {'posts' : posts}
+    
+    return render(request=request, template_name='main/home.html', context=context)
 
 
 @login_required(login_url="/login")
@@ -24,7 +35,6 @@ def create_post(request):
         form = PostForm()
         
     return render(request=request, template_name='main/create_post.html', context={'form':form})
-
 
 
 def sign_up(request):

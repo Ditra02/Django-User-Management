@@ -95,3 +95,13 @@ Creating django auth | User regis and signin(33:12)
 Creating Post (1:01:18)
 
 viewing post and we can delete a post if we create it (1:13:22)
+    displaying all of the post in home page (1:13:41)
+
+        1:14:57
+
+    create two button
+        1. button to delete
+        2. button to ban the user 
+
+        we want to show that button to the people that have the ability to delete a post
+        and to people that could ban a user (1:17:40)
