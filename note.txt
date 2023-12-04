@@ -82,6 +82,7 @@ Creating django auth | User regis and signin(33:12)
         ini bakal set kalo kita udah berhasil login mau diarahin ke mana 
 
     membuat register form (42:40)
+        user = User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 
     extend usercreationform dari django di forms.py (45.30)
 
@@ -119,4 +120,71 @@ Group and User Permission (1:25:56)
 
     admin grup bisa ban user dan bisa hapus semua post
 
+    Create super user (1:27:24)
     
+    create grup in django admin (1:29:09)
+
+        https://medium.com/djangotube/django-roles-groups-and-permissions-introduction-a54d1070544
+
+    Penjelasan mengenai permission berkaitan dengan kemampuan user (1:29:40)
+        setiap model yang kita tambahkan ke django, custom model punya kita dalam project ini 
+        contonhya. lalu Post model. model tersebut akan secara secara default akan membuat
+        permission object. permission itu adalah add, view, change dan delete.
+
+        misalya kita tambahkan sebuah permission pada sebuah grup, maksudnya bahwa setiap
+        user, bagian dari grup tersebut punya permission yang sama. Namun, django tidak 
+        melakukan apapun terhadap permission yang sudah diset. django ngga bakal melarang
+        sebuah user melakukan sesuatu. yang membatasi user dengan permission adalah developer nya 
+
+
+    menambahkan user ke suatu grup di django admin (1:31:16)
+    
+    membuat grup beserta permissionnya dengan koding (1:31:59)
+        jalankan venv lalu py manage.py shell lalu ketikan 
+            from django.contrib.auth.models import Group, Permission, User
+            from django.contrib.contenttypes.models import ContentType
+
+            lalu kita dapat membuat grup dengan | disini mod adalah nama grupnya
+                mod, created = Group.objects.get_or_create(name="mod")
+
+            kita bisa mengatur permissionnya dengan liat dulu permission yang ada di form atau model terkait
+            . misalnya dalam kasus ini kita akan mengatur permission pada grup default terkait dengan Post model 
+            (1:34:10)
+
+                from main.models import Post 
+                ct = ContentType.objects.get_for_model(model=Post)
+
+            liat semua permission dari model Post yang dapat diatur dalam sebuah grup (1:34:42)
+                perms = Permission.objects.filter(content_type=ct)
+                perms.all()
+
+            menambahkan permission yang sudah diliat ke  grup(1:35:20)
+                mod.permissions.add(*perms) # ini adalah cara menambahkan semua permission yang ada di model
+
+                mod.permissions.add(perms[<index>]) # jika ingin menambahkan secara satu persatu maka gantilah <index>
+                                                    # dengan index permission sesuai dengan urutan pada perms.all()
+            
+            untuk liat permission yang udah di atur di grup nya bisa 
+                mod.permissions.all()
+
+            untuk hapus permission yang udah diatur bisa
+               ! mod.permissions.all()[<index>]  # ganti <index> sesuai index permisionnya di mod.permissions.all()
+               ! niat hapus permission di grup nya aja ko malah permissiosn di model post nya juga ilang
+
+                django.pdf page 528
+               print(perms.all()[0].name)
+               print(perms.all()[0].codename)
+               print(perms.all()[0].content_type)
+
+               content_type = ContentType.objects.get_for_model(BlogPost)
+               permission = Permission.objects.create(
+               codename="can_publish",
+               name="Can Publish Posts",
+               content_type=content_type,
+               )
+
+
+1:36:10
+
+
+    k
