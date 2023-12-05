@@ -163,6 +163,8 @@ Group and User Permission (1:25:56)
 
                 mod.permissions.add(perms[<index>]) # jika ingin menambahkan secara satu persatu maka gantilah <index>
                                                     # dengan index permission sesuai dengan urutan pada perms.all()
+
+                mod.permissions.add(perms[0], perms[1])
             
             untuk liat permission yang udah di atur di grup nya bisa 
                 mod.permissions.all()
@@ -182,9 +184,87 @@ Group and User Permission (1:25:56)
                name="Can Publish Posts",
                content_type=content_type,
                )
+        
+            menambahkan user kedalam sebuah grup (1:36:17)
+                user = User.objects.filter(username="<siapa usernya>")
+                mod.user_set.add(user.first())
+            
+            Melihat user yang udah ada dalam Group 
+                mod = Group.objects.get(name="mod")
+                users = mod.user_set.all()
+
+                for user in users:
+                    print(f"Username: {user.username}")
+
+                atau 
+
+                users = User.objects.filter(groups__name="mod")
+
+                for user in users:
+                    print(f"Username: {user.username}")
+            
+            Hitung user yang ada dalam grup
+                mod = Group.objects.get(name="mod")
+                user_count = mod.user_set.count()
+
+                print(f"Number of users in 'mod' group: {user_count}")
+
+
+            Membuat fitur di retool untuk memudahkan menambahkan user ke dalam grup
+            dan untuk melihat di grup mana user itu    (1:38:42) 
+
+                di tabel user_grup ada id dan nama grup nya
+                di tabel auth_user_groups ada user_id dan grup_id
+
+                SQL query di railway (1:40:00)
+                    select * from auth_user LEFT JOIN auth_user_groups ON auth_user.id = auth_user_groups.user_id
+
+                    tampilkan semua kolom tabel auth_user di left join dengan tabel auth_user_groups
+                    di join berdasarkan user id
+
+                    mengganti grup id dengan nama grup nya (1:42:00)
+
+                        select 
+                            auth_user.username, auth_group.name as group_name  
+                        FROM 
+                            auth_user 
+                        LEFT JOIN 
+                            auth_user_groups 
+                        ON 
+                            auth_user.id = auth_user_groups.user_id 
+                        LEFT JOIN 
+                            auth_group 
+                        ON 
+                            auth_user_groups.group_id = auth_group.id
+                    
+
+                    membuat sebuah form di retool yang memungkinkan kita untuk mengubah grup sebuah user (1:44:35)
+
+                        Java Script transformer (1:47:10)
+                            ini untuk transform data ke berbagai format pake Js 
+                        
+                        membuat query untuk tombol submit pada form (1:49:29)
+                            ? input
+                            INSERT INTO 
+                                auth_user_groups (user_id, group_id)
+                            VALUES 
+                                ({{ userForm.data.user }}, {{ userForm.data.group }})
+
+                            ? update 
+                            UPDATE
+                                auth_user_groups
+                            SET
+                                group_id = {{userForm.data.group}}
+                            WHERE
+                                user_id = {{userForm.data.user}}
+
+                        menambahkan event handlers kalo formnya berhasil dan gagal (1:52:08)
+
+
+(1:53:25)
+
+
+
 
 
 1:36:10
-
-
-    k
