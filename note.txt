@@ -291,11 +291,18 @@ Group and User Permission (1:25:56)
 
         main.add_post ==> main adalah nama app (tempat views.py nya berada) nya, add_post adalah code name dari permissionnya 
 
+    
+    membuat grup "mod" punya kemampuan untuk menghapus post semua orang (1:55:53)
 
 
-(1:53:25)
+
+Banning user(1:58:36)
 
 
 
-kakashi
+kakashi, taringp
 hatake02
+
+
+default : can_add, can_change, can_view
+mod : can_add, can_change, can_delete, can_view

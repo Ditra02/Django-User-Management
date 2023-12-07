@@ -13,7 +13,7 @@ def home(request):
         post_id = request.POST.get("post-id")
         post = Post.objects.filter(id=post_id).first()
         
-        if post and post.author == request.user:
+        if post and (post.author == request.user or request.user.has_perm("main.delete_post")):
             post.delete()
     
     context = {'posts' : posts}
