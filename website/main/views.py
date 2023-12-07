@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import RegisterForm, PostForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import Post
+
 
 @login_required(login_url="/login")
 def home(request):
@@ -21,6 +22,7 @@ def home(request):
 
 
 @login_required(login_url="/login")
+@permission_required("add_post", login_url='/login', raise_exception=True)
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)

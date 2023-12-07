@@ -259,12 +259,31 @@ Group and User Permission (1:25:56)
                                 user_id = {{userForm.data.user}}
 
                         menambahkan event handlers kalo formnya berhasil dan gagal (1:52:08)
+    
+
+    Bagaimana cara membatasi akses page dan akses model berdasarkan permission yang dimiliki user
+    terhadap model (1:53:32)
+        # @permission_required("<code name dari permission terkait model>")
+
+        untuk permission terkait model diatas bisa dilihat dengan ke shell trus 
+            from django.contrib.auth.models import Group, Permission, User
+            from django.contrib.contenttypes.models import ContentType
+
+            from main.models import Post 
+            ct = ContentType.objects.get_for_model(model=Post)
+
+            perms = Permission.objects.filter(content_type=ct)
+            perms.all()
+
+            for perm in perms.all():
+                print(perm.codename)
+
+
+        @permission_required("add_post", login_url='/login', raise_exception=True)
+        kalo ga punya permission bakal raise_exception
+
 
 
 (1:53:25)
 
 
-
-
-
-1:36:10
