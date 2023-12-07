@@ -170,18 +170,25 @@ Group and User Permission (1:25:56)
                 mod.permissions.all()
 
             untuk hapus permission yang udah diatur bisa
-               ! mod.permissions.all()[<index>]  # ganti <index> sesuai index permisionnya di mod.permissions.all()
-               ! niat hapus permission di grup nya aja ko malah permissiosn di model post nya juga ilang
+                from django.contrib.auth.models import Group, Permission
+
+                mod_group = Group.objects.get(name="mod")
+                can_delete_permission = Permission.objects.get(codename="delete_post")
+
+                mod_group.permissions.remove(can_delete_permission)
+
+
 
                 django.pdf page 528
                print(perms.all()[0].name)
                print(perms.all()[0].codename)
                print(perms.all()[0].content_type)
 
+            Menambahkan permission baru ke dalam model 
                content_type = ContentType.objects.get_for_model(BlogPost)
                permission = Permission.objects.create(
-               codename="can_publish",
-               name="Can Publish Posts",
+               codename="delete_post",
+               name="Can delete Post",
                content_type=content_type,
                )
         
@@ -279,11 +286,16 @@ Group and User Permission (1:25:56)
                 print(perm.codename)
 
 
-        @permission_required("add_post", login_url='/login', raise_exception=True)
+        @permission_required("main.add_post", login_url='/login', raise_exception=True)
         kalo ga punya permission bakal raise_exception
+
+        main.add_post ==> main adalah nama app (tempat views.py nya berada) nya, add_post adalah code name dari permissionnya 
 
 
 
 (1:53:25)
 
 
+
+kakashi
+hatake02
