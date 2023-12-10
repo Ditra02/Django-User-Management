@@ -297,6 +297,16 @@ Group and User Permission (1:25:56)
 
 
 Banning user(1:58:36)
+    kita bisa ngeban user kalo kita itu super user .
+
+    jadi konsep ngeban disini adalah membuat si user yang tadinya ada dalam group default, 
+    kita keluar kan dari group itu sehingga tidak punya permission (yg berlaku jika ada di dalam group)
+    lagi .
+
+    membuat akun user yang baru dibuat jadi otomatis ter assign ke dalam group default (2:03:07)
+
+User Stats and dashboard(2:09:32)
+    
 
 
 
