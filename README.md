@@ -45,7 +45,7 @@ dashboard.
 ![home page](Snapshot/dashboard4.png)
 
 ### SQL query to get data from DB
-![home page](Snapshot/db.png)
+![home page](Snapshot/query.png)
 
 
 
